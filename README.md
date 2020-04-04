@@ -31,6 +31,9 @@ This databse include 13 tables:
 8. **place**: store place infomation with exactly coordinator. 
 9. **place_saved**: record place that user want to saving. This has many-to-one relationship with user and place table.
 
+![Database](https://raw.githubusercontent.com/tungtsdev96/LocationSupportTouristTeam/master/image_activity/Database.png)
+
+
 # Run project
 
 ## Step 1: Config environment: 
