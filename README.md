@@ -10,7 +10,6 @@ This provides RESTful API for the purpose of data communication between client a
 * Support for searching place on map by name or place nearby current location by place type.
 * To get more basic functions of the system go to [here](https://github.com/tungtsdev96/LocationSupportTouristTeam-AndroidApp)
 
---- 
 ## Framework, Platform integrated
 - The first, This project is written by [ExpressJS](https://expressjs.com/) one of framework NodeJS.
 - Secondly, Platform Firebase for storing and sync database, update current location of user by 
@@ -73,7 +72,7 @@ You can also follow below step:
     )}
 
 
-####Finally,  Generate a private key file for your service account:
+#### Finally,  Generate a private key file for your service account:
 - In the Firebase console, open Settings > (Service Accounts)[https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk].
 - Click Generate New Private Key, then confirm by clicking Generate Key.
 - Download and save to folder "/key" in your project.
@@ -99,7 +98,7 @@ You can also follow below step:
  - Update value of variable "KEY_GG_MAP" from file /repository/PlaceRepository.js by API Key you've just coppied.
 
     ```
-        const KEY_GG_MAP = "API_KEY_HERE";
+    const KEY_GG_MAP = "API_KEY_HERE";
     ```
 
 **Note**: You also can extend the restrict of search nearby search by chage the "DEFAULT_RADIUS" default value is 3000. 
@@ -114,15 +113,16 @@ You can also follow below step:
 
 4. Update value of REST_API_KEY, APP_ID from file /push_notification/NotificationController.js
 
-        >
-            const host = "onesignal.com";
-            var REST_API_KEY = "YOUR_REST_API_KEY";
-            var APP_ID = "YOUR_APP_ID";
-            const headers = {
-                "Content-Type": "application/json; charset=utf-8",
-                "Authorization": "Basic " + REST_API_KEY
-            };
-            const app_id = APP_ID;
+>
+
+    const host = "onesignal.com";
+    var REST_API_KEY = "YOUR_REST_API_KEY";
+    var APP_ID = "YOUR_APP_ID";
+    const headers = {
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": "Basic " + REST_API_KEY
+    };
+    const app_id = APP_ID;
 
 **Note**: You can see the [page](https://documentation.onesignal.com/reference#create-notification) to understand how to use REST API for push notification.
 
