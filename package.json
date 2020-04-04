@@ -1,0 +1,25 @@
+{
+  "name": "locationsupporttouristteam",
+  "version": "1.0.0",
+  "description": "This is the backend for the group support application when traveling in the form of long-distance travel (backpacking, hiking, climbing, adventure Travel...). This provides RESTful API for the purpose of data communication between client and database. Currently, the client in system is Android application. Read more (here)[]",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tungtsdev96/LocationSupportTouristTeam.git"
+  },
+  "author": "tung.ts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tungtsdev96/LocationSupportTouristTeam/issues"
+  },
+  "homepage": "https://github.com/tungtsdev96/LocationSupportTouristTeam#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "firebase-admin": "^8.10.0"
+  }
+}

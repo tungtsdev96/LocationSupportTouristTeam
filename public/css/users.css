@@ -1,0 +1,39 @@
+.list-users {
+    border: 0.5px solid #eee;
+    padding: 15px;
+}
+
+.list-users__body table {
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.list-users__body table,
+th,
+td {
+    /* border: 0.5px solid #eee; */
+    padding: 15px
+}
+
+.list-users__footer {
+    margin-top: 25px;
+}
+
+.list-users__footer-right {
+    text-align: right;
+}
+
+.list-users__footer-right .pagination a {
+    color: black;
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.list-users__footer-right .pagination a.active {
+    background-color: #286090;
+    color: white;
+    border: 1px solid #286090;
+}

@@ -1,0 +1,230 @@
+<%- include header.ejs %>
+
+<link href="public/css/users.css" rel="stylesheet">
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <h1>
+                Danh sách người dùng
+            </h1>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" style="margin: 15px 0px" onclick="openModalAdd()">Add Acount</button>
+
+    <div class="list-users">
+        <div class="list-users__body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Display Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.map((item, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i + 1 %></th>
+                            <td>
+                                <img src="<%= item.url_image %>" class="img" alt="Err" width="100" height="100"> 
+                            </td>
+                            <td><%= item.user_id %></td>
+                            <td><%= item.email %></td>
+                            <td>
+                                <%= item.display_name %>
+                            </td>
+                            <td><%= item.phone %></td>
+                            <td>
+                                <% if (item.status == true){ %>
+                                    <button class="btn btn-danger" data-user="<%= item.user_id %>" data-img="<%= item.url_image %>" onclick='deleteUser(this.getAttribute("data-user"), this.getAttribute("data-img"))'>Delete</button>
+                                <% }else{ %>
+                                    <a href="" class="btn btn-success">Enable</a>
+                                <% } %>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" id="btn_detail" data-user="<%= item.user_id %>" onclick='detailUser(this.getAttribute("data-user"))'>Chi tiết</button>
+                            </td>
+                            <!-- <td>
+                                <a href="/location-user/<%= item.user_id %>" class="btn btn-warning">Vị trí</a>
+                            </td> -->
+                        </tr> 
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="list-users__footer">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="list-users__footer-left">
+                        <small><i>Hiển thị từ 1 - 10</i></small>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="list-users__footer-right">
+                        <div class="pagination">
+                            <% for(var i=1;i <= 5;i++){ %>
+                                <a href="/users/<%= i %>"><%= i %></a>
+                            <% } %>
+                        </div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+</div>
+
+<!-- Modal detail - edit -->
+<div class="modal fade" id="modal-user" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-user-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-user">
+                    <div class="form-group">
+                        <label class="control-label">Id</label>
+                        <input name="user_id" placeholder="" class="form-control user-id" type="text" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input name="email" placeholder="" class="form-control email" type="text" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Display name</label>
+                        <input name="display_name" placeholder="" class="form-control display-name" type="text" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Phone Number</label>
+                        <input name="phone" class="form-control user-phone" type="text" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description: </label>
+                        <textarea class="form-control user-description"></textarea>
+                    </div>
+                    <div class="upload-file" style="display: flex; align-items: center">
+                        <img src=""  alt="Err" width="150" height="150" class="ava-profile"> 
+                        <input
+                            style="margin-left: 15px"
+                            name="uploaded_file" type="file" class="custom-file-input" 
+                            id="chooseImage" onchange="selectImage(this)"/>
+                    </div>
+                    <div class="modal-footer" style="padding-bottom: 0px; margin-top: 15px">
+                        <input class="btn btn-primary" type="button" value="Save" onclick="updateUser()"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal delete -->
+<div id="deleteModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Account</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
+                    <input type="button" class="btn btn-danger" value="Delete" id="btn-delete"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal add account -->
+<div class="modal fade" id="modal-user-add" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-user-title">Add new account</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-user-add" autocomplete="off">
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input name="email" placeholder="" class="form-control email" type="email"  required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password</label>
+                        <input name="password" placeholder="" class="form-control password" type="password" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Display name</label>
+                        <input name="display_name" placeholder="" class="form-control display-name" type="text" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Phone Number</label>
+                        <input name="phone" class="form-control user-phone" type="text" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description: </label>
+                        <textarea class="form-control user-description"></textarea>
+                    </div>
+                    <div class="upload-file" style="display: flex; align-items: center">
+                        <img src="" alt="Err" width="150" height="150" class="ava-profile">
+                        <input style="margin-left: 15px" name="uploaded_file" type="file" class="custom-file-input"
+                            id="chooseImage" onchange="selectImage(this)" />
+                    </div>
+                    <div class="modal-footer" style="padding-bottom: 0px; margin-top: 15px">
+                        <input class="btn btn-primary" type="button" value="Add" onclick="addAccount()"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript'>
+    $(document).ready(function() {
+       $("#form-user").submit(function(e){
+           alert('submit intercepted');
+           e.preventDefault(e);
+       });
+   });
+</script>
+
+<script src="public/js/users.js">
+</script>
+
+<%- include footer.ejs %>

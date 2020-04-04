@@ -1,0 +1,38 @@
+body {
+    position: relative;
+    height: 100%;
+    background-position: top;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/hust.jpg);
+}
+
+.login-form {
+    width: 500px;
+    height: auto;
+    border: 0.5px solid #eee;
+    padding: 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 35%;
+    left: 32%;
+}
+
+.login-form__header {
+    text-align: center;
+    font-weight: 700;
+    color: #007E33;
+    font-size: 22px;
+    padding: 20px;
+}
+
+.login-form__body {
+    padding: 10px;
+}
+
+.row{
+    margin-top: 20px;
+}
+input[type="text"]{
+    width:100%;
+}
