@@ -18,7 +18,7 @@
   "homepage": "https://github.com/tungtsdev96/LocationSupportTouristTeam#readme",
   "dependencies": {
     "cookie-parser": "^1.4.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.1.6",
     "firebase-admin": "^8.10.0"
   }
